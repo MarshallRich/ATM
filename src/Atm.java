@@ -16,7 +16,7 @@ public class Atm {
 
         boolean checkContinue = true;
 
-        while (checkContinue = true) {
+        while (checkContinue == true) {
             user.checkInput();
 
             if (user.input.equals("1")) {
