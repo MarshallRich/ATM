@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -12,22 +13,30 @@ public class Atm {
         User user = new User();
 
         user.enterName();
-        user.checkInput();
 
-        if (user.input.equals("1")) {
-            user.checkBalance();
-        }
+        boolean checkContinue = true;
 
-        else if (user.input.equals("2")) {
-            user.withdraw();
-        }
+        while (checkContinue = true) {
+            user.checkInput();
 
-        else if (user.input.equals("3")){
-            System.out.println("Thank you and please come again.");
-        }
-
-        else {
-            throw new Exception("Invalid input");
+            if (user.input.equals("1")) {
+                user.checkBalance();
+            }
+            else if (user.input.equals("2")) {
+                user.withdraw();
+            }
+            else if (user.input.equals("3")) {
+                System.out.println("Thank you and please come again.");
+                checkContinue = false;
+            }
+            else if (user.input.equals("4")) {
+                System.out.println("Deleting account, have a nice day.");
+                user.deleteAccount();
+                checkContinue = false;
+            }
+            else {
+                throw new Exception("Invalid input");
+            }
         }
     }
 
