@@ -29,6 +29,7 @@ public class User {
 
             if (createAccount.equalsIgnoreCase("y")){
                 accountMap.put(name, 0.00);
+                System.out.println("Account Created");
             }
 
             else{
@@ -39,7 +40,7 @@ public class User {
     }
 
     public void checkInput() {
-        System.out.println("Enter 1 to check balance. Enter 2 to withdraw funds. Enter 3 to cancel.");
+        System.out.println("Enter 1 to check balance. Enter 2 to withdraw funds. Enter 3 to cancel. Enter 4 to delete your account.");
         input=Atm.scanner.nextLine();
     }
 
