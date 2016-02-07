@@ -1,10 +1,13 @@
+import java.util.HashMap;
+
 /**
  * Created by Richard Marshall on 2/3/16.
  */
 public class User {
     public String name;
-    public int balance = 100;
+    public double balance;
     public String input;
+    public HashMap<String, Double> accountMap = new HashMap<>();
 
     public void enterName() throws Exception {
         System.out.println("Please enter your name");
@@ -15,8 +18,23 @@ public class User {
             throw new Exception("Please enter a valid name.");
         }
 
+        else if (accountMap.containsKey(name)){
+            System.out.println("Welcome " + name);
+        }
+
         else {
             System.out.println("Welcome " + name);
+            System.out.println("We do not have an account in your name, would you like to create one? [y/n]");
+            String createAccount = Atm.scanner.nextLine();
+
+            if (createAccount.equalsIgnoreCase("y")){
+                accountMap.put(name, 0.00);
+            }
+
+            else{
+                throw new Exception("Goodbye");
+            }
+
         }
     }
 
@@ -26,21 +44,25 @@ public class User {
     }
 
     public void checkBalance() {
+        balance = accountMap.get(name);
         System.out.println("Your balance is $" + balance);
     }
 
     public void withdraw() throws Exception {
-        System.out.println("Please enter a money ammount to withdraw.");
+        System.out.println("Please enter a money amount to withdraw.");
 
-        String numStr = Atm.scanner.nextLine();
-        int numInt = Integer.valueOf(numStr);
+        Double balanceCheck = Atm.scanner.nextDouble();
 
-        if (numInt > balance){
+        if (balanceCheck > balance){
             throw new Exception("Insufficient Funds");
         }
 
         else {
             System.out.println("Please take your money.");
         }
+    }
+
+    public void deleteAccount() {
+        accountMap.remove(name);
     }
 }
